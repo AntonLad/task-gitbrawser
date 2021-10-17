@@ -8,8 +8,7 @@ const InputUser = (props) => {
     setUserName(newUserName)
     props.onChange(newUserName)
   }
-  return (
-    <div>
+  return <div>
       <input
         type="text"
         id="input-field"
@@ -18,7 +17,6 @@ const InputUser = (props) => {
         onChange={onChange}
       />
     </div>
-  )
 }
 
 const Main = () => {
@@ -34,7 +32,6 @@ const Main = () => {
           <div>
             <InputUser onChange={onInputChange} />
           </div>
-          <div>{user}</div>
           <div className="flex justify-center">
             <button
               id="search-button"
