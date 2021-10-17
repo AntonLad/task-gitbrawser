@@ -10,8 +10,8 @@ const InputUser = (props) => {
   }
   return <div>
       <input
-        type="text"
         id="input-field"
+        type="text"
         className="rounded p-2 text-black"
         value={userName}
         onChange={onChange}
