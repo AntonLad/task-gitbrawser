@@ -21,7 +21,7 @@ const ListOfRepos = () => {
       {arrayOfRepos.map((it) => {
         return (
           <div key="it.id">
-            <Link to="/:userName/:repositoryName">{it.name}</Link>
+            <Link to={`/${userName}/${it.name}`}>{it.name}</Link>
           </div>
         )
       })}

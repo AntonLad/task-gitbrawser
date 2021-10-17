@@ -1,20 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import ReactMarkdown from 'react-markdown'
+
+import Header from './header'
 
 const ListOfReposAbout = () => {
-  // const [counter, setCounterNew] = useState(0)
+  const [readmeFile, setreadmeFile] = useState([])
+  const { userName, repositoryName } = useParams()
+
+  useEffect(() => {
+    axios
+      .get(`https://raw.githubusercontent.com/${userName}/${repositoryName}/master/README.md`)
+      .then((it) => {
+        setreadmeFile(it.data)
+      })
+    return () => {}
+  }, [userName, repositoryName])
 
   return (
-    <div classMame="bg-indigo-800 hover:text-red-500 text-white font-bold rounded-lg border shadow-lg p-10">
-      <div className="flex justify-center mb-2">Enter username</div>
-      <input id="input-field" type="text" className="rounded p-2 text-black" value="" />
-      <div className="flex justify-center">
-        <button
-          id="search-button"
-          type="button"
-          className="flex rounded py-1 mt-2 px-4 bg-gray-100 shadow text-black font-bold hover:bg-gray-200"
-        >
-          Go!
-        </button>
+    <div>
+      <Header />
+      <div id="description">
+        <ReactMarkdown>{readmeFile}</ReactMarkdown>
       </div>
     </div>
   )

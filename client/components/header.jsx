@@ -11,7 +11,7 @@ const Header = () => {
           <Link to="/">Back</Link>
         </div>
         <div id="go-repository-list" clasName="border rounded py-1 px-2">
-          <a href="/Dadhys">To Repository list</a>
+          <Link to={`/${userName}`}>To Repository list</Link>
         </div>
       </div>
     </div>
