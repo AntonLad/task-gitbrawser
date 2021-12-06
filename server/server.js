@@ -4,6 +4,8 @@ import cors from 'cors'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
+import axios from 'axios'
+// import { useParams } from 'react-router'
 
 import cookieParser from 'cookie-parser'
 import config from './config'
@@ -33,6 +35,11 @@ const middleware = [
 ]
 
 middleware.forEach((it) => server.use(it))
+
+server.get('/api/v1/user', async (req) => {
+  const userName = req.body
+  await axios(`https://api.github.com/users/${userName}/repos`).tnen(({ data }) => data)
+})
 
 server.use('/api/', (req, res) => {
   res.status(404)

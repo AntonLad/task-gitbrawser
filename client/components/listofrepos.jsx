@@ -18,13 +18,17 @@ const ListOfRepos = () => {
   return (
     <div>
       <Header />
-      {arrayOfRepos.map((it) => {
-        return (
-          <div key="it.id">
-            <Link to={`/${userName}/${it.name}`}>{it.name}</Link>
-          </div>
-        )
-      })}
+      <div className="flex items-center justify-center h-screen">
+        {arrayOfRepos.map((it) => {
+          return (
+            <div key="it.id">
+              <Link to={`/${userName}/${it.name}`} className="flex mr-2">
+                {it.name}
+              </Link>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
