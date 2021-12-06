@@ -4,8 +4,10 @@ import { Switch, Route } from 'react-router-dom'
 
 import Head from './head'
 import Main2 from './main2'
-import ListOfRepos from './listofrepos'
-import ListOfReposAbout from './listofreposabout'
+// import ListOfRepos from './listofrepos'
+import ListOfRepos2 from './listofrepos2'
+// import ListOfReposAbout from './listofreposabout'
+import ListOfReposAbout2 from './listofreposabout2'
 
 const Dummy = () => {
   return (
@@ -13,8 +15,8 @@ const Dummy = () => {
       <Head />
       <Switch>
         <Route exact path="/" component={() => <Main2 />} />
-        <Route exact path="/:userName" component={() => <ListOfRepos />} />
-        <Route exact path="/:userName/:repositoryName" component={() => <ListOfReposAbout />} />
+        <Route exact path="/:userName" component={() => <ListOfRepos2 />} />
+        <Route exact path="/:userName/:repositoryName" component={() => <ListOfReposAbout2 />} />
       </Switch>
     </div>
   )

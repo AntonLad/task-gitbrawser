@@ -5,6 +5,7 @@ import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
 import axios from 'axios'
+
 // import { useParams } from 'react-router'
 
 import cookieParser from 'cookie-parser'
@@ -36,9 +37,20 @@ const middleware = [
 
 middleware.forEach((it) => server.use(it))
 
-server.get('/api/v1/user', async (req) => {
-  const userName = req.body
-  await axios(`https://api.github.com/users/${userName}/repos`).tnen(({ data }) => data)
+server.post('/api/v1/user', async (req, res) => {
+  // console.log(req)
+  const userName = req.body.login
+  await axios(`https://api.github.com/users/${userName}/repos`)
+    .then(({ data }) => res.json(data))
+    .catch(() => res.json( `No User ${userName}`))
+})
+
+server.post('/api/v1/readme', async (req, res) => {
+  const userName = req.body.login
+  const repositName = req.body.reposName
+  await axios(`https://raw.githubusercontent.com/${userName}/${repositName}/master/README.md`)
+    .then(({ data }) => res.json(data))
+    .catch(() => res.json('No ReadMe File'))
 })
 
 server.use('/api/', (req, res) => {

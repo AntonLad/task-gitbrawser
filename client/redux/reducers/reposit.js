@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const GET_REPOS = 'GET_REPOS'
 
 const initialValue = {
@@ -9,7 +11,7 @@ const repository = (state = initialValue, action) => {
     case GET_REPOS: {
       return {
         ...state,
-        arrayOfRepos: action.repos
+        arrayOfRepos: action.data
       }
     }
     default:
@@ -21,19 +23,11 @@ export default repository
 
 export function getReposit(login) {
   return (dispatch) => {
-    fetch('/api/v1/user', {
-      method: 'POST',
-      body: JSON.stryngify(login),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((r) => r.json())
-      .then((repos) => {
-        dispatch({
-          type: GET_REPOS,
-          repos
-        })
+    axios.post('/api/v1/user', { login }).then(({ data }) => {
+      dispatch({
+        type: GET_REPOS,
+        data
       })
+    })
   }
 }

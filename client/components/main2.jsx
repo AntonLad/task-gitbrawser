@@ -1,4 +1,4 @@
-// вариант Main2 - ведение username на главной и обработка при помощи редьюсера. дописан редьюсер и экшен в username.js
+// вариант2 - Main2, ListOfRepos2, listofreposabout2 - и получение данных с сервера и передача через редьюсеры
 
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -34,9 +34,9 @@ const Main2 = () => {
               type="button"
               className="flex rounded py-1 mt-2 px-4 bg-gray-100 shadow text-black font-bold hover:bg-gray-300"
               onClick={() => {
-                
-                history.push(`/${login}`)
                 dispatch(getReposit(login))
+                history.push(`/${login}`)
+                
               }}
             >
               Go 2
